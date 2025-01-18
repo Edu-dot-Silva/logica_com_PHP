@@ -8,7 +8,7 @@
 </head>
 <body>
     <?php
-        $peso = 120;
+        $peso = 118.3;
         $altura = 1.75; 
         $imc = $peso/($altura+$altura);   
 

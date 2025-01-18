@@ -11,6 +11,8 @@
     // tag de abertura php
     // pra rodar não esquecer de ativar o xammp
     // url localhost/nome_da_pasta/nome_do_arquivo.php
+    // a pasta esta no C:/xamp/htdocs
+    // é o diretorio padrão que o xamp cria as pastas
 
     echo("Primeiros comandos");
 
