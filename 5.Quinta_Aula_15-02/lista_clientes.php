@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista - Clientes</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
     <script>
         // Comantário no Javascript e PHP
         function confirmarExclusao(id) {
@@ -23,7 +24,7 @@
     include 'conexao.php'; // Inclui o arquivo de conexão
 ?>  
 <a href="incluir_cliente.php" class="btn btn-success">Novo Cliente</a>
-<table class="table table-striped">
+<table class="table table-striped tabela_clientes">
   <thead> <!--Cabeçalho da tag tabela do html -->
     <tr> <!--Linha da tag tabela do html -->
       <th scope="col">ID</th> <!-- Coluna da tag tabela do html -->
@@ -45,10 +46,10 @@
       <td><?php echo htmlspecialchars($id_cliente); ?></td> <!-- htmlspecialchars-função limpeza -->
       <td><?php echo htmlspecialchars($nome); ?></td>
       <td><a href="editar_cliente.php?id=
-      <?php echo htmlspecialchars($id_cliente); ?>" class="btn btn-primary">
+      <?php echo htmlspecialchars($id_cliente); ?>" class="btn btn-primary btn_edita btn_lista">
       Editar</a></td>  
       <td><a href="#" onclick="confirmarExclusao(<?php echo htmlspecialchars($id_cliente); ?>)"
-      class="btn btn-danger">Excluir</a></td>
+      class="btn btn-danger btn_lista">Excluir</a></td>
     </tr>
     <?php
         } // O laço está entre as chaves

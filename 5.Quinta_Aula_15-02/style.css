@@ -1,0 +1,55 @@
+body{
+    background-color: white;
+}
+
+nav{
+background-color: #ededed;
+margin-bottom: 12px;
+
+}
+
+.img_logo{
+    width: 300px;
+}
+
+.tabela_clientes{
+    margin: 12px;
+}
+
+.btn_edita{
+    background-color:#427a88 ;
+}
+
+.btn_edita:hover{
+    background-color:#427a88 ;
+}
+
+.btn_lista{
+    transition: all ease-in-out 0.001s;
+}
+
+.btn_lista:hover{
+    transform: scale(0.90);
+}
+
+.opcao{
+    transition: all ease-in-out 0,01s;
+    width: 90px;
+
+}
+
+.opcao_home:hover{
+    background-image: url(home.png);
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: 24px;
+
+}
+
+.opcao_cliente:hover{
+    background-image: url(cliente.png);
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: 24px;
+
+}

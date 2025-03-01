@@ -36,7 +36,7 @@ try{
     if($stmt->execute()){
         header("Location:lista_clientes.php");
     } else{
-        echo "Erro ao insereir registro";
+        echo "Erro ao inserir registro";
     }
 } catch (PDOException $e){
 echo "Erro". $e->getMessage();

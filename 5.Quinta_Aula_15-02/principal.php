@@ -9,6 +9,6 @@
 </head>
 <body>
 <?php include 'menu.php' ?>
-<h1>teste home</h1>
+<h1>home</h1>
 </body>
 </html>
