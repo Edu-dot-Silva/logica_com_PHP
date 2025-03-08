@@ -13,12 +13,20 @@ try {
     exit;
 }
 
+// Função para calcular a idade com base na data de nascimento
+function calcularIdade($data_nascimento) {
+    $data_nascimento = new DateTime($data_nascimento);
+    $hoje = new DateTime();
+    $idade = $hoje->diff($data_nascimento);
+    return $idade->y;
+}
 
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <!-- Metadados e links para CSS e JavaScript -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listagem de Alunos</title>
@@ -29,7 +37,7 @@ try {
 </head>
 <body>
     <div class="container">
-        <h1>Sistema de cadastro de alunos</h1>
+        <h1>Sistema de cadastro de alunos </h1>
         <a href="adicionar_aluno.php" class="btn btn-success mb-3">Adicionar Aluno</a>
         <?php 
         // Verifica se a lista de alunos está vazia e exibe uma mensagem centralizada se não houver alunos cadastrados
@@ -43,6 +51,7 @@ try {
                 <tr>
                     <th>Nome</th>
                     <th>Data de Nascimento</th>
+                    <th>Idade</th>
                     <th>Email</th>
                     <th>Celular</th>
                     <th>Ações</th>
@@ -53,6 +62,7 @@ try {
                     <tr>
                         <td><?php echo htmlspecialchars($aluno['nome']); ?></td>
                         <td><?php echo date('d/m/Y', strtotime($aluno['data_nascimento'])); ?></td>
+                        <td><?php echo calcularIdade($aluno['data_nascimento']); ?></td>
                         <td><?php echo htmlspecialchars($aluno['email']); ?></td>
                         <td><?php echo htmlspecialchars($aluno['celular']); ?></td>
                         <td>
@@ -60,7 +70,7 @@ try {
                             <form method="post" action="deletar_aluno.php" style="display:inline;">
                                 <input type="hidden" name="id" value="<?php echo $aluno['id']; ?>">
                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDeleteModal<?php echo $aluno['id']; ?>">Deletar</button>
-                                <!-- Modal -->
+                                <!-- Modal de confirmação de deleção -->
                                 <div class="modal fade" id="confirmDeleteModal<?php echo $aluno['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
