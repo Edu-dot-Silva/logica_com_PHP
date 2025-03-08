@@ -1,18 +1,25 @@
 <?php
+// Inclui o arquivo de conexão com o banco de dados
 include 'conexao_bdaluno.php';
 
+// Verifica se o método da requisição é POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Obtém o nome do aluno a ser adicionado a partir dos dados POST
     $nome = $_POST['nome'];
     $data_nascimento = $_POST['data_nascimento'];
     $email = $_POST['email'];
     $celular = $_POST['celular'];
 
     try {
+        // Prepara a instrução SQL para inserir um novo aluno com o nome fornecido
         $stmt = $pdo->prepare('INSERT INTO alunos (nome, data_nascimento, email, celular) VALUES (?, ?, ?, ?)');
+        // Executa a instrução SQL com o nome fornecido
         $stmt->execute([$nome, $data_nascimento, $email, $celular]);
-        header('Location: lista_alunos.php?adicionado=1');
+        // Redireciona para a página de lista de alunos
+        header('Location: lista_alunos.php');
         exit;
     } catch (PDOException $e) {
+        // Exibe uma mensagem de erro caso ocorra uma exceção
         echo "<h2>Erro ao adicionar aluno: " . $e->getMessage() . "</h2>";
     }
 }

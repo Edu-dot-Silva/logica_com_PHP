@@ -1,39 +1,55 @@
 <?php
+// Inclui o arquivo de conexão com o banco de dados
 include 'conexao_bdaluno.php';
 
+// Verifica se o ID do aluno foi fornecido via GET
 if (!isset($_GET['id'])) {
+    // Exibe uma mensagem de erro se o ID não foi fornecido
     echo "<h2>ID do aluno não fornecido.</h2>";
     exit;
 }
 
+// Obtém o ID do aluno a partir dos parâmetros GET
 $id = $_GET['id'];
 
 try {
+    // Prepara a instrução SQL para selecionar o aluno com o ID fornecido
     $stmt = $pdo->prepare('SELECT * FROM alunos WHERE id = ?');
+    // Executa a instrução SQL com o ID fornecido
     $stmt->execute([$id]);
-    $aluno = $stmt->fetch();
+    // Obtém o resultado da consulta
+    $aluno = $stmt->fetch(PDO::FETCH_ASSOC);
 
+    // Verifica se o aluno foi encontrado
     if (!$aluno) {
+        // Exibe uma mensagem de erro se o aluno não foi encontrado
         echo "<h2>Aluno não encontrado.</h2>";
         exit;
     }
 } catch (PDOException $e) {
+    // Exibe uma mensagem de erro caso ocorra uma exceção
     echo "<h2>Erro ao buscar aluno: " . $e->getMessage() . "</h2>";
     exit;
 }
 
+// Verifica se o método da requisição é POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Obtém os dados do formulário
     $nome = $_POST['nome'];
     $data_nascimento = $_POST['data_nascimento'];
     $email = $_POST['email'];
     $celular = $_POST['celular'];
 
     try {
+        // Prepara a instrução SQL para atualizar os dados do aluno com o ID fornecido
         $stmt = $pdo->prepare('UPDATE alunos SET nome = ?, data_nascimento = ?, email = ?, celular = ? WHERE id = ?');
+        // Executa a instrução SQL com os dados fornecidos
         $stmt->execute([$nome, $data_nascimento, $email, $celular, $id]);
+        // Redireciona para a página de lista de alunos
         header('Location: lista_alunos.php');
         exit;
     } catch (PDOException $e) {
+        // Exibe uma mensagem de erro caso ocorra uma exceção
         echo "<h2>Erro ao atualizar aluno: " . $e->getMessage() . "</h2>";
     }
 }
